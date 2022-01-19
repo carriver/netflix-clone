@@ -20,15 +20,15 @@ function Nav() {
   }, []);
 
   return (
-    <div className={`nav ${show && 'nav_bg'}`}>
-      <div className='nav_content'>
+    <div className={`nav ${show && 'nav__bg'}`}>
+      <div className='nav__content'>
         <img
-          className='nav_logo'
+          className='nav__logo'
           src={require('../img/logo.png')}
           alt='logo'
         />
         <img
-          className='nav_avatar'
+          className='nav__avatar'
           src='https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png'
           alt='avatar'
         />
