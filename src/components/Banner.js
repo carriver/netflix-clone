@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './Banner.css';
 import requests from './Requests';
 import axios from '../axios';
+import Typewriter from 'typewriter-effect';
 
 function Banner() {
   const [movie, setMovie] = useState([]);
@@ -42,7 +43,13 @@ function Banner() {
           <button className='banner__button'>My List</button>
         </div>
         <h1 className='banner__description'>
-          {truncate(movie?.overview, 150)}
+          <Typewriter
+            options={{
+              strings: truncate(movie?.overview, 150),
+              delay: 30,
+              autoStart: true,
+            }}
+          />
         </h1>
       </div>
       <div className='banner--fadeBottom' />
