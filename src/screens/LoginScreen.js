@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import SignUpScreen from './SignUpScreen';
+import backgroundImg from '../img/loginBackground.png';
 import './LoginScreen.css';
-import backgroundImg from '../img/loginbg.png';
 
 function LoginScreen() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 700);
@@ -15,6 +16,8 @@ function LoginScreen() {
       false
     );
   }, [isMobile]);
+
+  const [signIn, setSignIn] = useState(false);
 
   return (
     <div
@@ -31,34 +34,48 @@ function LoginScreen() {
           src={require('../img/logo.png')}
           alt=''
         />
-        <button className='loginScreen__button'>Sign in</button>
+        <button onClick={() => setSignIn(true)} className='loginScreen__button'>
+          Sign in
+        </button>
         <div className='loginScreeen__gradient' />
       </div>
       <div
         className={`${
-          isMobile ? 'loginScreen__bodyMobile' : 'loginScreen__body'
+          signIn
+            ? 'loginScreen__bodySignIn'
+            : isMobile
+            ? 'loginScreen__bodyMobile'
+            : 'loginScreen__body'
         }`}>
-        <h1>Unlimited movies, TV shows, and more.</h1>
-        <h2>Watch anywhere. Cancel anytime.</h2>
-        <h3>
-          Ready to watch? Enter your email to create or restart your membership.
-        </h3>
-        <div
-          className={`${
-            isMobile ? 'loginScreen__inputMobile' : 'loginScreen__input'
-          }`}>
-          <form>
-            <input type='email' placeholder='Email Address' />
-            <button
+        {signIn ? (
+          <SignUpScreen />
+        ) : (
+          <>
+            <h1>Unlimited movies, TV shows, and more.</h1>
+            <h2>Watch anywhere. Cancel anytime.</h2>
+            <h3>
+              Ready to watch? Enter your email to create or restart your
+              membership.
+            </h3>
+            <div
               className={`${
-                isMobile
-                  ? 'loginScreen__getStartedMobile'
-                  : 'loginScreen__getStarted'
+                isMobile ? 'loginScreen__inputMobile' : 'loginScreen__input'
               }`}>
-              GET STARTED
-            </button>
-          </form>
-        </div>
+              <form>
+                <input type='email' placeholder='Email Address' />
+                <button
+                  onClick={() => setSignIn(true)}
+                  className={`${
+                    isMobile
+                      ? 'loginScreen__getStartedMobile'
+                      : 'loginScreen__getStarted'
+                  }`}>
+                  GET STARTED
+                </button>
+              </form>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

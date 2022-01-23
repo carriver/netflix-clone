@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import './Banner.css';
+import Typewriter from 'typewriter-effect';
 import requests from './Requests';
 import axios from '../axios';
-import Typewriter from 'typewriter-effect';
+import './Banner.css';
 
 function Banner() {
   const [movie, setMovie] = useState([]);
