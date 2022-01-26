@@ -17,7 +17,6 @@
 .row__poster {
   max-height: 200px;
   object-fit: contain;
-  margin-right: 10px;
   width: 100%;
   transition: transform 450ms;
 }
@@ -35,4 +34,23 @@
 .row__posterLarge:hover {
   transform: scale(1.09);
   opacity: 1;
+}
+
+div.swiper-button-prev {
+  transition: all 450ms !important;
+  color: rgb(255, 255, 255);
+  margin-right: 10px;
+  left: 0;
+}
+div.swiper-button-next {
+  transition: all 450ms !important;
+  color: rgb(255, 255, 255);
+}
+
+.swiper-slide {
+  transition: all 450ms !important;
+}
+
+.swiper {
+  z-index: 0;
 }
