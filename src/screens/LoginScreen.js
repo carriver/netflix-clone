@@ -18,6 +18,7 @@ function LoginScreen() {
   }, [isMobile]);
 
   const [signIn, setSignIn] = useState(false);
+  const [email, setEmail] = useState('');
 
   return (
     <div
@@ -48,7 +49,7 @@ function LoginScreen() {
             : 'loginScreen__body'
         }`}>
         {signIn ? (
-          <SignUpScreen />
+          <SignUpScreen email={email} />
         ) : (
           <>
             <h1>Unlimited movies, TV shows, and more.</h1>
@@ -62,8 +63,14 @@ function LoginScreen() {
                 isMobile ? 'loginScreen__inputMobile' : 'loginScreen__input'
               }`}>
               <form>
-                <input type='email' placeholder='Email Address' />
+                <input
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  type='email'
+                  placeholder='Email Address'
+                />
                 <button
+                  type='button'
                   onClick={() => setSignIn(true)}
                   className={`${
                     isMobile

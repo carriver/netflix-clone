@@ -1,6 +1,7 @@
 .profileScreen {
   height: 100vh;
   color: white;
+  overflow-y: scroll;
 }
 
 .profileScreen__body {
@@ -9,13 +10,25 @@
   width: 50%;
   margin-left: auto;
   margin-right: auto;
-  padding-top: 15%;
+  padding-top: 10%;
+  max-width: 800px;
+}
+
+.profileScreen__bodyMobile {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 30%;
   max-width: 800px;
 }
 
 .profileScreen__info {
   display: flex;
   justify-content: center;
+  height: 100%;
+  margin-bottom: 20px;
 }
 
 .profileScreen__details {

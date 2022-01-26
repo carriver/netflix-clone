@@ -30,12 +30,14 @@ function Nav() {
           className='nav__logo'
           src={require('../img/logo.png')}
           alt='logo'
+          title='Home'
         />
         <img
           onClick={() => navigate('/profile')}
           className='nav__avatar'
           src={require('../img/avatar.png')}
           alt='avatar'
+          title='Edit Profile'
         />
       </div>
     </div>

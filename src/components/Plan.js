@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../features/userSlice';
 import db from '../firebase';
-import './PlanScreen.css';
+import './Plan.css';
 
-function PlanScreen() {
+function Plan() {
   const [products, setProducts] = useState([]);
   const user = useSelector(selectUser);
   const [subscription, setSubscription] = useState(null);
@@ -45,9 +45,6 @@ function PlanScreen() {
         setProducts(products);
       });
   }, []);
-
-  console.log(products);
-  console.log(subscription);
 
   const loadCheckout = async (priceId) => {
     const docRef = await db
@@ -116,4 +113,4 @@ function PlanScreen() {
   );
 }
 
-export default PlanScreen;
+export default Plan;
