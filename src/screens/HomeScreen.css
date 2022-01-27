@@ -1,0 +1,21 @@
+.homeScreen__footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 30px;
+}
+
+.homeScreen__footer > h6 {
+  align-self: flex-start;
+  color: #fff;
+  font-size: 1rem;
+  margin-right: 30px;
+  margin-top: 8px;
+  white-space: nowrap;
+  text-align: left;
+}
+
+.homeScreen__footer > img {
+  width: 400px;
+  margin-left: 10px;
+}
