@@ -39,12 +39,13 @@
 div.swiper-button-prev {
   transition: all 450ms !important;
   color: rgb(255, 255, 255);
-  margin-right: 10px;
   left: 0;
 }
+
 div.swiper-button-next {
   transition: all 450ms !important;
   color: rgb(255, 255, 255);
+  right: 0;
 }
 
 .swiper-slide {

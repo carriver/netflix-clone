@@ -9,22 +9,10 @@ import './Row.css';
 SwiperCore.use([Navigation]);
 
 function Row({ title, fetchURL, isLargeRow = false }) {
+  // Fetch data from TMDB Database
   const [movies, setMovies] = useState([]);
 
   const base_url = 'https://image.tmdb.org/t/p/original/';
-
-  const [width, setWidth] = useState(window.innerWidth);
-
-  useEffect(() => {
-    window.addEventListener(
-      'resize',
-      () => {
-        const width = window.innerWidth;
-        setWidth(width);
-      },
-      false
-    );
-  }, [width]);
 
   useEffect(() => {
     async function fetchData() {

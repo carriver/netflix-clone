@@ -5,6 +5,8 @@ import axios from '../axios';
 import './Banner.css';
 
 function Banner() {
+  // Fetch data for one random movie from TMDB Database and
+  // store it using a useState Hook
   const [movie, setMovie] = useState([]);
 
   useEffect(() => {
@@ -20,8 +22,7 @@ function Banner() {
     fetchData();
   }, []);
 
-  console.log(movie);
-
+  // Ellipsis Function
   function truncate(string, n) {
     return string?.length > n ? string.substr(0, n - 1) + '...' : string;
   }

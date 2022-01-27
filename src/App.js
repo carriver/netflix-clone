@@ -9,8 +9,13 @@ import ProfileScreen from './screens/ProfileScreen';
 import './App.css';
 
 function App() {
-  const user = useSelector(selectUser);
   const dispatch = useDispatch();
+
+  // Adds an observer or listener for changes to the user's sign-in state.
+  // If the user is signed in, it dispatches the login action to the
+  // Redux store and stores the user id and email in the userSlice,
+  // to be used throughout the App. If the user is logged out,
+  // the logout action is dispatched to reset the user to null.
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((userAuth) => {
@@ -28,6 +33,8 @@ function App() {
 
     return unsubscribe;
   }, [dispatch]);
+
+  const user = useSelector(selectUser);
 
   return (
     <div className='app'>

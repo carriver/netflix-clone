@@ -4,6 +4,7 @@ import backgroundImg from '../img/loginBackground.png';
 import './LoginScreen.css';
 
 function LoginScreen() {
+  // Hook to detect if screen size has changed
   const [isMobile, setIsMobile] = useState(window.innerWidth < 700);
 
   useEffect(() => {
@@ -17,6 +18,7 @@ function LoginScreen() {
     );
   }, [isMobile]);
 
+  // Hooks to set the Sign In state and store email input value
   const [signIn, setSignIn] = useState(false);
   const [email, setEmail] = useState('');
 

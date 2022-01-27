@@ -5,8 +5,9 @@ import db from '../firebase';
 import './Plan.css';
 
 function Plan() {
-  const [products, setProducts] = useState([]);
   const user = useSelector(selectUser);
+
+  //List available subscription data
   const [subscription, setSubscription] = useState(null);
 
   useEffect(() => {
@@ -25,6 +26,9 @@ function Plan() {
         });
       });
   }, [user.uid]);
+
+  //List available products and prices
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     db.collection('products')
@@ -46,6 +50,7 @@ function Plan() {
       });
   }, []);
 
+  //Start a Subscription Checkout Session with Stripe Checkout
   const loadCheckout = async (priceId) => {
     const docRef = await db
       .collection('customers')
