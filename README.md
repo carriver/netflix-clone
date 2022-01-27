@@ -4,10 +4,6 @@ Live Demo: https://netflix-clone-7dcc3.web.app/
 
 As a longtime user of Netflix, I've used their website as inspiration for this full-stack application. This is a personal project for my software developer portfolio, not for commercial purposes.
 
-<br />
-
----
-
 ## Tech Stack
 
 - Node.js
@@ -23,10 +19,6 @@ As a longtime user of Netflix, I've used their website as inspiration for this f
   - Firebase Authentication
   - Firestore Database
   - Stripe (Firebase extension)
-
-<br />
-
----
 
 ## Implementation Highlights
 
@@ -46,21 +38,29 @@ As a longtime user of Netflix, I've used their website as inspiration for this f
   - Date: Any future date
   - Billing address, enter dummy details
 
-  <br />
-
----
+<br />
 
 ## Screenshots
 
-<br />
-
 HomeScreen:
 ![](./screenshots/HomeScreen.png)
+
+<br />
+
 LoginScreen:
 ![](./screenshots/LoginScreen.png)
+
+<br />
+
 SignUpcreen:
 ![](./screenshots/SignUpScreen.png)
+
+<br />
+
 ProfileScreen:
 ![](./screenshots/ProfileScreen.png)
+
+<br />
+
 Stripe Checkout:
 ![](./screenshots/StripeCheckout.png)
