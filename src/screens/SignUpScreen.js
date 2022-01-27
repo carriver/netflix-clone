@@ -1,12 +1,17 @@
 import React, { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { auth } from '../firebase';
-import email from './LoginScreen';
 import './SignUpScreen.css';
 
 function SignUpScreen({ email }) {
+  const navigate = useNavigate();
+
+  // Hooks that store values from input fields
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
 
+  // Event handler for registering a new user using
+  // Firebase Authentication, storing the credentials in the database
   const register = (e) => {
     e.preventDefault();
 
@@ -16,13 +21,14 @@ function SignUpScreen({ email }) {
         passwordRef.current.value
       )
       .then((authUser) => {
-        console.log(authUser);
+        navigate('/profile');
       })
       .catch((error) => {
         alert(error.message);
       });
   };
 
+  // Event handler for validating credentials and signing in existing users
   const signIn = (e) => {
     e.preventDefault();
 
@@ -32,7 +38,7 @@ function SignUpScreen({ email }) {
         passwordRef.current.value
       )
       .then((authUser) => {
-        console.log(authUser);
+        navigate('/profile');
       })
       .catch((error) => {
         alert(error.message);
