@@ -17,7 +17,7 @@ Full-stack application inspired by Netflix. This is a personal project for my so
 - Firebase
   - Hosting
   - Firebase Authentication
-  - Firestore Database
+  - Firestore Database (NoSQL)
   - Stripe (Firebase extension)
 
 ## Implementation Highlights
