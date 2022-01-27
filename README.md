@@ -2,7 +2,7 @@
 
 Live Demo: https://netflix-clone-7dcc3.web.app/
 
-As a longtime user of Netflix, I've used their website as inspiration for this full-stack application. This is a personal project for my software developer portfolio, not for commercial purposes.
+Full-stack application inspired by Netflix. This is a personal project for my software developer portfolio, not for commercial purposes.
 
 ## Tech Stack
 
@@ -64,3 +64,7 @@ ProfileScreen:
 
 Stripe Checkout:
 ![](./screenshots/StripeCheckout.png)
+
+## Disclaimer
+
+This application features materials protected by the Fair Use guidelines of Section 107 of the Copyright Act. All rights reserved to the copyright owners.
