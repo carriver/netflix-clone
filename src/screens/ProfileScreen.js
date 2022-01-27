@@ -9,8 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import './ProfileScreen.css';
 
 function ProfileScreen() {
-  const user = useSelector(selectUser);
-
+  // Hook to detect if screen size has changed
   const [isMobile, setIsMobile] = useState(window.innerWidth < 700);
 
   useEffect(() => {
@@ -24,8 +23,7 @@ function ProfileScreen() {
     );
   }, [isMobile]);
 
-  const [show, hide] = useState(true);
-
+  // Toast Notifications
   useEffect(() => {
     const notify = () =>
       toast.info('Click Netflix for Home Screen', {
@@ -40,12 +38,10 @@ function ProfileScreen() {
     notify();
   }, []);
 
-  const [show2, hide2] = useState(true);
-
   useEffect(() => {
-    const notify = () =>
+    const notify2 = () =>
       toast.info('Click Avatar for Profile Screen', {
-        position: isMobile ? 'top-left' : 'top-right',
+        position: window.innerWidth < 700 ? 'top-left' : 'top-right',
         autoClose: 8000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -53,30 +49,32 @@ function ProfileScreen() {
         draggable: true,
         progress: undefined,
       });
-    notify();
+    notify2();
   }, []);
+
+  const user = useSelector(selectUser);
 
   return (
     <div className='profileScreen'>
       <Nav />
       <ToastContainer />
-      {show}
-      {hide}
-      <ToastContainer />
-      {show2}
-      {hide2}
+
       <div
         className={`${
           isMobile ? 'profileScreen__bodyMobile' : 'profileScreen__body'
         }`}>
         <h1>Edit Profile</h1>
+
         <div className='profileScreen__info'>
           <img src={require('../img/avatar.png')} alt='avatar' />
+
           <div className='profileScreen__details'>
             <h2>{user.email}</h2>
+
             <div className='profileScreen__plans'>
               <h3>Plans</h3>
               <Plan />
+
               <button
                 onClick={() => auth.signOut()}
                 className='profileScreen__signOut'>
