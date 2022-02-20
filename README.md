@@ -22,7 +22,11 @@ Full-stack application inspired by Netflix. This is a personal project for my so
 
 ## Implementation Highlights
 
-- This project was bootstrapped with Create React App, using the Redux and Redux Toolkit template.
+- This project was bootstrapped with Create React App, using the Redux Toolkit template.
+
+- BEM naming convention for classes in HTML and CSS.
+
+- Responsive web design
 
 - Movie details are pulled from TMDB using their [API](https://developers.themoviedb.org/3/getting-started/introduction 'TMDB API').
 
