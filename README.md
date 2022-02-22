@@ -1,8 +1,8 @@
 # Netflix Clone
 
-Live Demo: https://netflix-clone-7dcc3.web.app/
-
 Full-stack application inspired by Netflix. This is a personal project for my software developer portfolio, not for commercial purposes.
+
+[LIVE DEMO](https://netflix-clone-7dcc3.web.app/)
 
 ## Tech Stack
 
