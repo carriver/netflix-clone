@@ -4,7 +4,7 @@ import backgroundImg from '../img/loginBackground.png';
 import './LoginScreen.css';
 
 function LoginScreen() {
-  // Hook to detect if screen size has changed
+  // Hook to detect if Screen size has changed
   const [isMobile, setIsMobile] = useState(window.innerWidth < 700);
 
   useEffect(() => {

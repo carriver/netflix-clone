@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import './ProfileScreen.css';
 
 function ProfileScreen() {
-  // Hook to detect if screen size has changed
+  // Hook to detect if window size has changed
   const [isMobile, setIsMobile] = useState(window.innerWidth < 700);
 
   useEffect(() => {
