@@ -28,5 +28,9 @@ export default defineConfig(({ mode }) => {
     plugins: [react()],
     // firebase.json (kept out of git) deploys build/, the Create React App output folder.
     build: { outDir: 'build' },
+    test: {
+      environment: 'jsdom',
+      setupFiles: ['./src/test/setup.js'],
+    },
   };
 });
