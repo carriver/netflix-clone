@@ -105,13 +105,16 @@
   cursor: pointer;
 }
 
-.loginScreen__logo {
+.loginScreen__logoLink {
   position: fixed;
-  width: 150px;
   left: 0;
   top: 5px;
-  object-fit: contain;
   padding-left: 20px;
+}
+
+.loginScreen__logo {
+  width: 150px;
+  object-fit: contain;
 }
 
 .loginScreen__input > form > input {

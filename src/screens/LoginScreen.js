@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import SignUpScreen from './SignUpScreen';
 import backgroundImg from '../img/loginBackground.png';
 import './LoginScreen.css';
@@ -32,11 +33,13 @@ function LoginScreen() {
         backgroundSize: 'cover',
       }}>
       <div className='loginScreen__bg'>
-        <img
-          className='loginScreen__logo'
-          src={require('../img/logo.png')}
-          alt=''
-        />
+        <Link to='/' className='loginScreen__logoLink'>
+          <img
+            className='loginScreen__logo'
+            src={require('../img/logo.png')}
+            alt='Back to browsing'
+          />
+        </Link>
         <button onClick={() => setSignIn(true)} className='loginScreen__button'>
           Sign in
         </button>
