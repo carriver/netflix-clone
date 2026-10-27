@@ -44,6 +44,27 @@ Full-stack application inspired by Netflix. This is a personal project for my so
 
 <br />
 
+## Running Locally
+
+Requires Node 22.
+
+1. `cp .env.example .env.local` and fill in your Firebase web app config and TMDB API key.
+2. `npm ci`
+3. `npm run dev` for a local server, `npm run lint`, `npm run build` for a production build in `build/`.
+
+Deploying with Firebase Hosting needs a `firebase.json` (kept out of git) that serves `build/`
+and rewrites every path to `index.html`, so links like `/profile` work on refresh:
+
+```json
+{
+  "hosting": {
+    "public": "build",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [{ "source": "**", "destination": "/index.html" }]
+  }
+}
+```
+
 ## Screenshots
 
 HomeScreen:
