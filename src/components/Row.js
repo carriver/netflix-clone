@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation } from 'swiper';
-import axios from '../axios';
+import { fetchTmdbResults } from '../fetchTmdbResults';
 import 'swiper/css/bundle';
 import 'swiper/css';
 import './Row.css';
@@ -15,12 +15,7 @@ function Row({ title, fetchURL, isLargeRow = false }) {
   const base_url = 'https://image.tmdb.org/t/p/original/';
 
   useEffect(() => {
-    async function fetchData() {
-      const request = await axios.get(fetchURL);
-      setMovies(request.data.results);
-      return request;
-    }
-    fetchData();
+    fetchTmdbResults(fetchURL).then(setMovies);
   }, [fetchURL]);
 
   return (

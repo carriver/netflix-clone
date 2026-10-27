@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Typewriter from 'typewriter-effect';
 import requests from './Requests';
-import axios from '../axios';
+import { fetchTmdbResults } from '../fetchTmdbResults';
 import './Banner.css';
 
 const pickRandom = (items) => items[Math.floor(Math.random() * items.length)];
@@ -12,12 +12,9 @@ function Banner() {
   const [movie, setMovie] = useState(null);
 
   useEffect(() => {
-    async function fetchData() {
-      const request = await axios.get(requests.fetchNetflixOriginals);
-      setMovie(pickRandom(request.data.results));
-      return request;
-    }
-    fetchData();
+    fetchTmdbResults(requests.fetchNetflixOriginals).then((results) => {
+      if (results.length) setMovie(pickRandom(results));
+    });
   }, []);
 
   // Ellipsis Function
