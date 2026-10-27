@@ -112,7 +112,7 @@ function Plan() {
               onClick={() =>
                 !isCurrentPlan && loadCheckout(productData?.prices?.priceId)
               }>
-              {isCurrentPlan ? 'Current Plan' : 'Suscribe'}
+              {isCurrentPlan ? 'Current Plan' : 'Subscribe'}
             </button>
           </div>
         );
