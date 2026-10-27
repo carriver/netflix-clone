@@ -50,7 +50,7 @@ Requires Node 22.
 
 1. `cp .env.example .env.local` and fill in your Firebase web app config and TMDB API key.
 2. `npm ci`
-3. `npm run dev` for a local server, `npm run lint`, `npm run build` for a production build in `build/`.
+3. `npm run dev` for a local server, `npm test`, `npm run lint`, and `npm run build` for a production build in `build/`.
 
 Deploying with Firebase Hosting needs a `firebase.json` (kept out of git) that serves `build/`
 and rewrites every path to `index.html`, so links like `/profile` work on refresh:
