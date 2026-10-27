@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { auth } from '../firebase';
 import './SignUpScreen.css';
@@ -17,7 +17,7 @@ function SignUpScreen({ email }) {
         emailRef.current.value,
         passwordRef.current.value
       )
-      .then((authUser) => {
+      .then(() => {
         navigate('/profile');
       })
       .catch((error) => {
@@ -33,7 +33,7 @@ function SignUpScreen({ email }) {
         emailRef.current.value,
         passwordRef.current.value
       )
-      .then((authUser) => {
+      .then(() => {
         navigate('/profile');
       })
       .catch((error) => {

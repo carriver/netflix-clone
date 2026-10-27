@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { Navigation } from 'swiper';
+import { Navigation } from 'swiper';
 import { fetchTmdbResults } from '../fetchTmdbResults';
 import 'swiper/css/bundle';
 import 'swiper/css';
 import './Row.css';
-
-SwiperCore.use([Navigation]);
 
 function Row({ title, fetchURL, isLargeRow = false }) {
   const [movies, setMovies] = useState([]);
@@ -22,6 +20,7 @@ function Row({ title, fetchURL, isLargeRow = false }) {
       <h2>{title}</h2>
       <div className='row__posters'>
         <Swiper
+          modules={[Navigation]}
           navigation
           spaceBetween={0}
           breakpoints={{

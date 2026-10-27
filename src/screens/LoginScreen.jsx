@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import SignUpScreen from './SignUpScreen';
 import backgroundImg from '../img/loginBackground.png';

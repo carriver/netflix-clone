@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Typewriter from 'typewriter-effect';
 import requests from './Requests';
 import { fetchTmdbResults } from '../fetchTmdbResults';
