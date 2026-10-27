@@ -4,6 +4,24 @@ import { selectUser } from '../features/userSlice';
 import db from '../firebase';
 import './Plan.css';
 
+async function loadActiveProductsWithPrice() {
+  const productSnapshot = await db.collection('products').where('active', '==', true).get();
+
+  const productEntries = await Promise.all(
+    productSnapshot.docs.map(async (productDoc) => {
+      const priceSnapshot = await productDoc.ref
+        .collection('prices')
+        .where('active', '==', true)
+        .get();
+      const [price] = priceSnapshot.docs;
+      const prices = price && { priceId: price.id, priceData: price.data() };
+      return [productDoc.id, { ...productDoc.data(), prices }];
+    })
+  );
+
+  return Object.fromEntries(productEntries);
+}
+
 function Plan() {
   const user = useSelector(selectUser);
 
@@ -27,27 +45,12 @@ function Plan() {
       });
   }, [user.uid]);
 
-  //List available products and prices
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState({});
 
   useEffect(() => {
-    db.collection('products')
-      .where('active', '==', true)
-      .get()
-      .then((querySnapshot) => {
-        const products = {};
-        querySnapshot.forEach(async (productDoc) => {
-          products[productDoc.id] = productDoc.data();
-          const priceSnap = await productDoc.ref.collection('prices').get();
-          priceSnap.docs.forEach((price) => {
-            products[productDoc.id].prices = {
-              priceId: price.id,
-              priceData: price.data(),
-            };
-          });
-        });
-        setProducts(products);
-      });
+    loadActiveProductsWithPrice()
+      .then(setProducts)
+      .catch((error) => console.warn(`Could not load subscription plans: ${error.message}`));
   }, []);
 
   //Start a Subscription Checkout Session with Stripe Checkout
