@@ -1,23 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import SignUpScreen from './SignUpScreen';
 import backgroundImg from '../img/loginBackground.png';
+import { useIsMobile } from '../hooks/useIsMobile';
 import './LoginScreen.css';
 
 function LoginScreen() {
-  // Hook to detect if Screen size has changed
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 700);
-
-  useEffect(() => {
-    window.addEventListener(
-      'resize',
-      () => {
-        const ismobile = window.innerWidth < 700;
-        if (ismobile !== isMobile) setIsMobile(ismobile);
-      },
-      false
-    );
-  }, [isMobile]);
+  const isMobile = useIsMobile();
 
   // Hooks to set the Sign In state and store email input value
   const [signIn, setSignIn] = useState(false);

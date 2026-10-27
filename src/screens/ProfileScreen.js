@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../features/userSlice';
 import { toast, ToastContainer } from 'react-toastify';
@@ -6,22 +6,11 @@ import { auth } from '../firebase';
 import Nav from '../components/Nav';
 import Plan from '../components/Plan';
 import 'react-toastify/dist/ReactToastify.css';
+import { useIsMobile } from '../hooks/useIsMobile';
 import './ProfileScreen.css';
 
 function ProfileScreen() {
-  // Hook to detect if window size has changed
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 700);
-
-  useEffect(() => {
-    window.addEventListener(
-      'resize',
-      () => {
-        const ismobile = window.innerWidth < 700;
-        if (ismobile !== isMobile) setIsMobile(ismobile);
-      },
-      false
-    );
-  }, [isMobile]);
+  const isMobile = useIsMobile();
 
   // Toast Notifications
   useEffect(() => {
