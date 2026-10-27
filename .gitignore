@@ -11,10 +11,12 @@
 # production
 /build
 /.firebase
+# Pre-.env config files; keep ignored so old local copies are never committed
 src/firebase.js
+src/api.js
+api.js
 .firebaserc
 firebase.json
-api.js
 
 # misc
 .DS_Store

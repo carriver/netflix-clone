@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { BrowserRouter, Navigate, Routes, Route } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { login, logout } from './features/userSlice';
-import { auth } from './firebase';
+import { auth } from './firebaseClient';
 import HomeScreen from './screens/HomeScreen';
 import LoginScreen from './screens/LoginScreen';
 import ProfileScreen from './screens/ProfileScreen';

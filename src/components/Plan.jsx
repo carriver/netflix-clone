@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../features/userSlice';
-import db from '../firebase';
+import { db } from '../firebaseClient';
 import './Plan.css';
 
 async function loadActiveProductsWithPrice() {

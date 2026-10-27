@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../features/userSlice';
 import { toast, ToastContainer } from 'react-toastify';
-import { auth } from '../firebase';
+import { auth } from '../firebaseClient';
 import Nav from '../components/Nav';
 import Plan from '../components/Plan';
 import 'react-toastify/dist/ReactToastify.css';
