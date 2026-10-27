@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import SignUpScreen from './SignUpScreen';
 import backgroundImg from '../img/loginBackground.png';
 import { useIsMobile } from '../hooks/useIsMobile';
+import logoImg from '../img/logo.png';
 import './LoginScreen.css';
 
 function LoginScreen() {
@@ -24,7 +25,7 @@ function LoginScreen() {
         <Link to='/' className='loginScreen__logoLink'>
           <img
             className='loginScreen__logo'
-            src={require('../img/logo.png')}
+            src={logoImg}
             alt='Back to browsing'
           />
         </Link>

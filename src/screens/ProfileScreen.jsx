@@ -7,6 +7,7 @@ import Nav from '../components/Nav';
 import Plan from '../components/Plan';
 import 'react-toastify/dist/ReactToastify.css';
 import { useIsMobile } from '../hooks/useIsMobile';
+import avatarImg from '../img/avatar.png';
 import './ProfileScreen.css';
 
 const NAVIGATION_HINT_TOAST_OPTIONS = {
@@ -52,7 +53,7 @@ function ProfileScreen() {
         <h1>Edit Profile</h1>
 
         <div className='profileScreen__info'>
-          <img src={require('../img/avatar.png')} alt='avatar' />
+          <img src={avatarImg} alt='avatar' />
 
           <div className='profileScreen__details'>
             <h2>{user.email}</h2>

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import logoImg from '../img/logo.png';
+import avatarImg from '../img/avatar.png';
 import './Nav.css';
 
 function Nav() {
@@ -28,14 +30,14 @@ function Nav() {
         <img
           onClick={() => navigate('/')}
           className='nav__logo'
-          src={require('../img/logo.png')}
+          src={logoImg}
           alt='logo'
           title='Home'
         />
         <img
           onClick={() => navigate('/profile')}
           className='nav__avatar'
-          src={require('../img/avatar.png')}
+          src={avatarImg}
           alt='avatar'
           title='Edit Profile'
         />
