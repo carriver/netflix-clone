@@ -67,7 +67,7 @@ function Plan() {
       const { error, url } = snap.data();
       if (error) {
         // Details are in the Stripe extension's Cloud Function logs in the Firebase console.
-        alert(`An error occured: ${error.message}`);
+        alert(`An error occurred: ${error.message}`);
       }
       if (url) {
         window.location.assign(url);
