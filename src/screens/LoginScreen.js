@@ -8,8 +8,7 @@ import './LoginScreen.css';
 function LoginScreen() {
   const isMobile = useIsMobile();
 
-  // Hooks to set the Sign In state and store email input value
-  const [signIn, setSignIn] = useState(false);
+  const [isSignInFormOpen, setIsSignInFormOpen] = useState(false);
   const [email, setEmail] = useState('');
 
   return (
@@ -29,20 +28,20 @@ function LoginScreen() {
             alt='Back to browsing'
           />
         </Link>
-        <button onClick={() => setSignIn(true)} className='loginScreen__button'>
+        <button onClick={() => setIsSignInFormOpen(true)} className='loginScreen__button'>
           Sign in
         </button>
         <div className='loginScreeen__gradient' />
       </div>
       <div
         className={`${
-          signIn
+          isSignInFormOpen
             ? 'loginScreen__bodySignIn'
             : isMobile
             ? 'loginScreen__bodyMobile'
             : 'loginScreen__body'
         }`}>
-        {signIn ? (
+        {isSignInFormOpen ? (
           <SignUpScreen email={email} />
         ) : (
           <>
@@ -65,7 +64,7 @@ function LoginScreen() {
                 />
                 <button
                   type='button'
-                  onClick={() => setSignIn(true)}
+                  onClick={() => setIsSignInFormOpen(true)}
                   className={`${
                     isMobile
                       ? 'loginScreen__getStartedMobile'

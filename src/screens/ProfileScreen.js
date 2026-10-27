@@ -9,37 +9,34 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useIsMobile } from '../hooks/useIsMobile';
 import './ProfileScreen.css';
 
+const NAVIGATION_HINT_TOAST_OPTIONS = {
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+};
+
+function useNavigationHintToasts(isMobile) {
+  useEffect(() => {
+    toast.info('Click Netflix for Home Screen', {
+      ...NAVIGATION_HINT_TOAST_OPTIONS,
+      position: 'top-left',
+      autoClose: 5000,
+    });
+    toast.info('Click Avatar for Profile Screen', {
+      ...NAVIGATION_HINT_TOAST_OPTIONS,
+      position: isMobile ? 'top-left' : 'top-right',
+      autoClose: 8000,
+    });
+    // Shown once per visit; later resizes must not re-trigger them.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+}
+
 function ProfileScreen() {
   const isMobile = useIsMobile();
 
-  // Toast Notifications
-  useEffect(() => {
-    const notify = () =>
-      toast.info('Click Netflix for Home Screen', {
-        position: 'top-left',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-    notify();
-  }, []);
-
-  useEffect(() => {
-    const notify2 = () =>
-      toast.info('Click Avatar for Profile Screen', {
-        position: window.innerWidth < 700 ? 'top-left' : 'top-right',
-        autoClose: 8000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-    notify2();
-  }, []);
+  useNavigationHintToasts(isMobile);
 
   const user = useSelector(selectUser);
 

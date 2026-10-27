@@ -10,24 +10,13 @@ import RequireAuth from './components/RequireAuth';
 import RedirectIfSignedIn from './components/RedirectIfSignedIn';
 import './App.css';
 
-function App() {
+function useSyncSignedInUserToStore() {
   const dispatch = useDispatch();
 
-  // Adds an observer or listener for changes to the user's sign-in state.
-  // If the user is signed in, it dispatches the login action to the
-  // Redux store and stores the user id and email in the userSlice,
-  // to be used throughout the App. If the user is logged out,
-  // the logout action is dispatched to reset the user to null.
-
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((userAuth) => {
-      if (userAuth) {
-        dispatch(
-          login({
-            uid: userAuth.uid,
-            email: userAuth.email,
-          }),
-        );
+    const unsubscribe = auth.onAuthStateChanged((signedInUser) => {
+      if (signedInUser) {
+        dispatch(login({ uid: signedInUser.uid, email: signedInUser.email }));
       } else {
         dispatch(logout());
       }
@@ -35,6 +24,10 @@ function App() {
 
     return unsubscribe;
   }, [dispatch]);
+}
+
+function App() {
+  useSyncSignedInUserToStore();
 
   return (
     <div className='app'>

@@ -25,7 +25,6 @@ async function loadActiveProductsWithPrice() {
 function Plan() {
   const user = useSelector(selectUser);
 
-  //List available subscription data
   const [subscription, setSubscription] = useState(null);
 
   useEffect(() => {
@@ -53,8 +52,7 @@ function Plan() {
       .catch((error) => console.warn(`Could not load subscription plans: ${error.message}`));
   }, []);
 
-  //Start a Subscription Checkout Session with Stripe Checkout
-  const loadCheckout = async (priceId) => {
+  const startStripeCheckout = async (priceId) => {
     const docRef = await db
       .collection('customers')
       .doc(user.uid)
@@ -68,12 +66,10 @@ function Plan() {
     docRef.onSnapshot(async (snap) => {
       const { error, url } = snap.data();
       if (error) {
-        // Show an error to your customer and
-        // inspect your Cloud Function logs in the Firebase console.
+        // Details are in the Stripe extension's Cloud Function logs in the Firebase console.
         alert(`An error occured: ${error.message}`);
       }
       if (url) {
-        // We have a Stripe Checkout URL, let's redirect.
         window.location.assign(url);
       }
     });
@@ -110,7 +106,7 @@ function Plan() {
 
             <button
               onClick={() =>
-                !isCurrentPlan && loadCheckout(productData?.prices?.priceId)
+                !isCurrentPlan && startStripeCheckout(productData?.prices?.priceId)
               }>
               {isCurrentPlan ? 'Current Plan' : 'Subscribe'}
             </button>

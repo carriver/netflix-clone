@@ -6,12 +6,9 @@ import './SignUpScreen.css';
 function SignUpScreen({ email }) {
   const navigate = useNavigate();
 
-  // Hooks that store values from input fields
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
 
-  // Event handler for registering a new user using
-  // Firebase Authentication, storing the credentials in the database
   const register = (e) => {
     e.preventDefault();
 
@@ -28,7 +25,6 @@ function SignUpScreen({ email }) {
       });
   };
 
-  // Event handler for validating credentials and signing in existing users
   const signIn = (e) => {
     e.preventDefault();
 

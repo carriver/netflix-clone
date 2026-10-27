@@ -9,7 +9,6 @@ import './Row.css';
 SwiperCore.use([Navigation]);
 
 function Row({ title, fetchURL, isLargeRow = false }) {
-  // Fetch data from TMDB Database
   const [movies, setMovies] = useState([]);
 
   const base_url = 'https://image.tmdb.org/t/p/original/';

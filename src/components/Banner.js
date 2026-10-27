@@ -6,9 +6,10 @@ import './Banner.css';
 
 const pickRandom = (items) => items[Math.floor(Math.random() * items.length)];
 
+const truncateWithEllipsis = (text, maxLength) =>
+  text?.length > maxLength ? text.slice(0, maxLength - 1) + '...' : text;
+
 function Banner() {
-  // Fetch data for one random movie from TMDB Database and
-  // store it using a useState Hook
   const [movie, setMovie] = useState(null);
 
   useEffect(() => {
@@ -16,11 +17,6 @@ function Banner() {
       if (results.length) setMovie(pickRandom(results));
     });
   }, []);
-
-  // Ellipsis Function
-  function truncate(string, n) {
-    return string?.length > n ? string.substr(0, n - 1) + '...' : string;
-  }
 
   return (
     <header
@@ -43,7 +39,7 @@ function Banner() {
         <h1 className='banner__description'>
           <Typewriter
             options={{
-              strings: truncate(movie?.overview, 150),
+              strings: truncateWithEllipsis(movie?.overview, 150),
               delay: 30,
               autoStart: true,
             }}
