@@ -60,22 +60,17 @@ function Row({ title, fetchURL, isLargeRow = false }) {
               slidesPerGroup: 2,
             },
           }}>
-          {movies.map(
-            (movie, idx) =>
-              ((isLargeRow && movie.poster_path) ||
-                (!isLargeRow && movie.backdrop_path)) && (
-                <SwiperSlide key={idx}>
-                  <img
-                    className={`row__poster ${
-                      isLargeRow && 'row__posterLarge'
-                    }`}
-                    key={movie.id}
-                    src={`${base_url}${movie.poster_path}`}
-                    alt={movie.name}
-                  />
-                </SwiperSlide>
-              )
-          )}
+          {movies
+            .filter((movie) => movie.poster_path)
+            .map((movie) => (
+              <SwiperSlide key={movie.id}>
+                <img
+                  className={`row__poster ${isLargeRow ? 'row__posterLarge' : ''}`}
+                  src={`${base_url}${movie.poster_path}`}
+                  alt={movie.title || movie.name || movie.original_name}
+                />
+              </SwiperSlide>
+            ))}
         </Swiper>
       </div>
     </div>
