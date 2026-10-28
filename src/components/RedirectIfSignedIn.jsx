@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { Navigate, useLocation } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router';
 import { selectUser } from '../features/userSlice';
 
 function RedirectIfSignedIn({ children }) {

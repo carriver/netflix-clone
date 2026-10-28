@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect } from 'react';
-import { BrowserRouter, Navigate, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Navigate, Routes, Route } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { login, logout } from './features/userSlice';
 import { watchSignedInUser } from './authService';

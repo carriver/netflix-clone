@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import SignUpScreen from './SignUpScreen';
 import backgroundImg from '../img/loginBackground.png';
 import { useIsMobile } from '../hooks/useIsMobile';
