@@ -15,8 +15,6 @@
 src/firebase.js
 src/api.js
 api.js
-.firebaserc
-firebase.json
 
 # misc
 .DS_Store

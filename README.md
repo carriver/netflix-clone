@@ -52,17 +52,15 @@ Requires Node 22.
 2. `npm ci`
 3. `npm run dev` for a local server, `npm test`, `npm run lint`, and `npm run build` for a production build in `build/`.
 
-Deploying with Firebase Hosting needs a `firebase.json` (kept out of git) that serves `build/`
-and rewrites every path to `index.html`, so links like `/profile` work on refresh:
+### Deploying
 
-```json
-{
-  "hosting": {
-    "public": "build",
-    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
-    "rewrites": [{ "source": "**", "destination": "/index.html" }]
-  }
-}
+Hosting config is in `firebase.json` (serves `build/`, rewrites every path to `index.html` so
+`/login` and `/profile` work on refresh) and `.firebaserc` (project `netflix-clone-7dcc3`).
+
+```bash
+npm install -g firebase-tools
+firebase login
+npm run build && firebase deploy --only hosting
 ```
 
 ## Screenshots
