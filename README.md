@@ -1,8 +1,6 @@
-# Netflix Clone
+# Reelhouse (Netflix-inspired clone)
 
-Full-stack application inspired by Netflix. This is a personal project for my software developer portfolio, not for commercial purposes.
-
-[LIVE DEMO](https://netflix-clone-7dcc3.web.app/)
+Full-stack streaming app inspired by Netflix, rebranded as Reelhouse. This is a personal project for my software developer portfolio, not for commercial purposes, and is not affiliated with Netflix.
 
 ## Tech Stack
 
@@ -54,14 +52,10 @@ Requires Node 22.
 
 ### Deploying
 
-Hosting config is in `firebase.json` (serves `build/`, rewrites every path to `index.html` so
-`/login` and `/profile` work on refresh) and `.firebaserc` (project `netflix-clone-7dcc3`).
-
-```bash
-npm install -g firebase-tools
-firebase login
-npm run build && firebase deploy --only hosting
-```
+The front end is hosted on Vercel; Firebase provides Authentication, Firestore and the
+Stripe extension. `vercel.json` selects the Vite preset, serves `build/` and rewrites every
+path to `index.html` so `/login` and `/profile` work on refresh. In the Vercel project,
+add the same `VITE_*` variables as `.env.local` (Settings > Environment Variables).
 
 ## Screenshots
 

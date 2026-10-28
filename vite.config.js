@@ -26,7 +26,7 @@ export default defineConfig(({ mode }) => {
 
   return {
     plugins: [react()],
-    // firebase.json deploys build/; keep the two in sync.
+    // vercel.json serves build/; keep the two in sync.
     build: { outDir: 'build' },
     test: {
       environment: 'jsdom',
