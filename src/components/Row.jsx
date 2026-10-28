@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper';
+import { Navigation } from 'swiper/modules';
 import { fetchTmdbResults } from '../fetchTmdbResults';
 import 'swiper/css/bundle';
 import 'swiper/css';
