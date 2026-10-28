@@ -2,6 +2,8 @@
 
 Full-stack streaming app inspired by Netflix, rebranded as Reelhouse. This is a personal project for my software developer portfolio, not for commercial purposes, and is not affiliated with Netflix.
 
+[LIVE DEMO](https://reelhouse-lake.vercel.app/)
+
 ## Tech Stack
 
 - Node.js
