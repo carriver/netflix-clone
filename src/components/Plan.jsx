@@ -36,7 +36,7 @@ function Plan() {
 
       {subscription && (
         <p>
-          Renewal date:
+          Renewal date:{' '}
           {new Date(
             subscription?.current_period_end * 1000
           ).toLocaleDateString()}
