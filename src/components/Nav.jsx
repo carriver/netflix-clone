@@ -25,7 +25,7 @@ function Nav() {
   }, []);
 
   return (
-    <div className={`nav ${show && 'nav__bg'}`}>
+    <div className={`nav ${show ? 'nav__bg' : ''}`}>
       <div className='nav__content'>
         <img
           onClick={() => navigate('/')}
