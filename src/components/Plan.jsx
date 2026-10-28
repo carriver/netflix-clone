@@ -1,26 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../features/userSlice';
-import { db } from '../firebaseClient';
+import { loadActiveProductsWithPrice, loadSubscriptions, startCheckoutSession } from '../billing';
 import './Plan.css';
-
-async function loadActiveProductsWithPrice() {
-  const productSnapshot = await db.collection('products').where('active', '==', true).get();
-
-  const productEntries = await Promise.all(
-    productSnapshot.docs.map(async (productDoc) => {
-      const priceSnapshot = await productDoc.ref
-        .collection('prices')
-        .where('active', '==', true)
-        .get();
-      const [price] = priceSnapshot.docs;
-      const prices = price && { priceId: price.id, priceData: price.data() };
-      return [productDoc.id, { ...productDoc.data(), prices }];
-    })
-  );
-
-  return Object.fromEntries(productEntries);
-}
 
 function Plan() {
   const user = useSelector(selectUser);
@@ -28,20 +10,9 @@ function Plan() {
   const [subscription, setSubscription] = useState(null);
 
   useEffect(() => {
-    db.collection('customers')
-      .doc(user.uid)
-      .collection('subscriptions')
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach(async (subscription) => {
-          setSubscription({
-            role: subscription.data().role,
-            current_period_end: subscription.data().current_period_end.seconds,
-            current_period_start:
-              subscription.data().current_period_start.seconds,
-          });
-        });
-      });
+    loadSubscriptions(user.uid)
+      .then((subscriptions) => setSubscription(subscriptions.at(-1) ?? null))
+      .catch((error) => console.warn(`Could not load subscription: ${error.message}`));
   }, [user.uid]);
 
   const [products, setProducts] = useState({});
@@ -52,28 +23,12 @@ function Plan() {
       .catch((error) => console.warn(`Could not load subscription plans: ${error.message}`));
   }, []);
 
-  const startStripeCheckout = async (priceId) => {
-    const docRef = await db
-      .collection('customers')
-      .doc(user.uid)
-      .collection('checkout_sessions')
-      .add({
-        price: priceId,
-        success_url: window.location.origin,
-        cancel_url: window.location.origin,
-      });
-
-    docRef.onSnapshot(async (snap) => {
-      const { error, url } = snap.data();
-      if (error) {
-        // Details are in the Stripe extension's Cloud Function logs in the Firebase console.
-        alert(`An error occurred: ${error.message}`);
-      }
-      if (url) {
-        window.location.assign(url);
-      }
+  const startStripeCheckout = (priceId) =>
+    startCheckoutSession(user.uid, priceId, {
+      onCheckoutUrl: (url) => window.location.assign(url),
+      // Details are in the Stripe extension's Cloud Function logs in the Firebase console.
+      onError: (error) => alert(`An error occurred: ${error.message}`),
     });
-  };
 
   return (
     <div className='planScreen'>

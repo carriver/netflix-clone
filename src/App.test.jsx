@@ -8,27 +8,21 @@ import App from './App';
 const authMock = vi.hoisted(() => {
   let notifyAuthState = () => {};
   return {
-    onAuthStateChanged: (callback) => {
-      notifyAuthState = callback;
+    watchSignedInUser: (onChange) => {
+      notifyAuthState = onChange;
       return () => {};
     },
-    signOut: () => {},
+    signOutUser: () => {},
     reportSignedInUser: (user) => notifyAuthState(user),
   };
 });
 
-const firestoreMock = vi.hoisted(() => {
-  const emptySnapshot = { docs: [], forEach: () => {} };
-  const query = {
-    doc: () => query,
-    collection: () => query,
-    where: () => query,
-    get: async () => emptySnapshot,
-  };
-  return { collection: () => query };
-});
-
-vi.mock('./firebaseClient', () => ({ auth: authMock, db: firestoreMock }));
+vi.mock('./authService', () => authMock);
+vi.mock('./billing', () => ({
+  loadActiveProductsWithPrice: async () => ({}),
+  loadSubscriptions: async () => [],
+  startCheckoutSession: async () => () => {},
+}));
 vi.mock('./fetchTmdbResults', () => ({ fetchTmdbResults: async () => [] }));
 vi.mock('swiper/react', () => ({
   Swiper: ({ children }) => <div>{children}</div>,

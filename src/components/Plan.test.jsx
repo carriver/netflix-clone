@@ -4,39 +4,20 @@ import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import { describe, expect, it, vi } from 'vitest';
 import userReducer, { login } from '../features/userSlice';
+import { startCheckoutSession } from '../billing';
 import Plan from './Plan';
 
-const firestoreMock = vi.hoisted(() => {
-  const addCheckoutSession = vi.fn(async () => ({ onSnapshot: () => {} }));
-  const premiumProduct = {
-    id: 'prod_premium',
-    data: () => ({ name: 'Premium', description: '4K + HDR' }),
-    ref: {
-      collection: () => ({
-        where: () => ({
-          get: async () => ({ docs: [{ id: 'price_premium', data: () => ({ unit_amount: 1999 }) }] }),
-        }),
-      }),
+vi.mock('../billing', () => ({
+  loadActiveProductsWithPrice: async () => ({
+    prod_premium: {
+      name: 'Premium',
+      description: '4K + HDR',
+      prices: { priceId: 'price_premium', priceData: { unit_amount: 1999 } },
     },
-  };
-  const customerDoc = {
-    collection: (name) =>
-      name === 'subscriptions'
-        ? { get: async () => ({ forEach: () => {} }) }
-        : { add: addCheckoutSession },
-  };
-  return {
-    addCheckoutSession,
-    db: {
-      collection: (name) =>
-        name === 'products'
-          ? { where: () => ({ get: async () => ({ docs: [premiumProduct] }) }) }
-          : { doc: () => customerDoc },
-    },
-  };
-});
-
-vi.mock('../firebaseClient', () => ({ db: firestoreMock.db }));
+  }),
+  loadSubscriptions: async () => [],
+  startCheckoutSession: vi.fn(async () => () => {}),
+}));
 
 const renderPlanForSignedInUser = () => {
   const store = configureStore({ reducer: { user: userReducer } });
@@ -49,7 +30,7 @@ const renderPlanForSignedInUser = () => {
 };
 
 describe('Plan', () => {
-  it('lists active plans once their prices have loaded', async () => {
+  it('lists active plans with a subscribe button', async () => {
     renderPlanForSignedInUser();
 
     expect(await screen.findByText('Premium')).toBeInTheDocument();
@@ -61,8 +42,6 @@ describe('Plan', () => {
 
     await userEvent.click(await screen.findByRole('button', { name: 'Subscribe' }));
 
-    expect(firestoreMock.addCheckoutSession).toHaveBeenCalledWith(
-      expect.objectContaining({ price: 'price_premium' }),
-    );
+    expect(startCheckoutSession).toHaveBeenCalledWith('user-1', 'price_premium', expect.any(Object));
   });
 });

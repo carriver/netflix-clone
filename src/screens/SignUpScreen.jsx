@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { auth } from '../firebaseClient';
+import { registerWithEmail, signInWithEmail } from '../authService';
 import './SignUpScreen.css';
 
 function SignUpScreen({ email }) {
@@ -12,11 +12,7 @@ function SignUpScreen({ email }) {
   const register = (e) => {
     e.preventDefault();
 
-    auth
-      .createUserWithEmailAndPassword(
-        emailRef.current.value,
-        passwordRef.current.value
-      )
+    registerWithEmail(emailRef.current.value, passwordRef.current.value)
       .then(() => {
         navigate('/profile');
       })
@@ -28,11 +24,7 @@ function SignUpScreen({ email }) {
   const signIn = (e) => {
     e.preventDefault();
 
-    auth
-      .signInWithEmailAndPassword(
-        emailRef.current.value,
-        passwordRef.current.value
-      )
+    signInWithEmail(emailRef.current.value, passwordRef.current.value)
       .then(() => {
         navigate('/profile');
       })

@@ -1,20 +1,22 @@
-import { useEffect } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { BrowserRouter, Navigate, Routes, Route } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { login, logout } from './features/userSlice';
-import { auth } from './firebaseClient';
+import { watchSignedInUser } from './authService';
 import HomeScreen from './screens/HomeScreen';
 import LoginScreen from './screens/LoginScreen';
-import ProfileScreen from './screens/ProfileScreen';
 import RequireAuth from './components/RequireAuth';
 import RedirectIfSignedIn from './components/RedirectIfSignedIn';
 import './App.css';
+
+// Only signed-in users reach the profile, so its Firestore code loads on demand.
+const ProfileScreen = lazy(() => import('./screens/ProfileScreen'));
 
 function useSyncSignedInUserToStore() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((signedInUser) => {
+    const unsubscribe = watchSignedInUser((signedInUser) => {
       if (signedInUser) {
         dispatch(login({ uid: signedInUser.uid, email: signedInUser.email }));
       } else {
@@ -46,7 +48,9 @@ function App() {
             path='/profile'
             element={
               <RequireAuth>
-                <ProfileScreen />
+                <Suspense fallback={null}>
+                  <ProfileScreen />
+                </Suspense>
               </RequireAuth>
             }
           />

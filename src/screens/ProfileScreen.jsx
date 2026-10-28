@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../features/userSlice';
 import { toast, ToastContainer } from 'react-toastify';
-import { auth } from '../firebaseClient';
+import { signOutUser } from '../authService';
 import Nav from '../components/Nav';
 import Plan from '../components/Plan';
 import 'react-toastify/dist/ReactToastify.css';
@@ -63,7 +63,7 @@ function ProfileScreen() {
               <Plan />
 
               <button
-                onClick={() => auth.signOut()}
+                onClick={signOutUser}
                 className='profileScreen__signOut'>
                 Sign Out
               </button>
