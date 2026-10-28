@@ -1,0 +1,17 @@
+.demoNotice {
+  max-width: 640px;
+  margin: 0 auto 32px;
+  padding: 12px 16px;
+  border: 1px solid #f5a623;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.demoNotice code {
+  color: #f5a623;
+}
+

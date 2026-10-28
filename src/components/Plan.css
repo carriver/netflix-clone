@@ -13,8 +13,8 @@
 .planScreen__plan > button {
   padding: 10px 20px;
   font-size: 1rem;
-  color: #fff;
-  background-color: #e50914;
+  color: #111;
+  background-color: #f5a623;
   font-weight: 600;
   border: none;
   cursor: pointer;

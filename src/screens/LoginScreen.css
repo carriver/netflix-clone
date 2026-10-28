@@ -1,3 +1,9 @@
+.loginScreen,
+.loginScreen--mobile {
+  background: radial-gradient(circle at 15% 10%, rgba(245, 166, 35, 0.25), transparent 45%),
+    linear-gradient(160deg, #1c1c1c 0%, #000 70%);
+}
+
 .loginScreen {
   position: relative;
   height: 100%;
@@ -98,8 +104,8 @@
   top: 20px;
   padding: 10px 20px;
   font-size: 1rem;
-  color: #fff;
-  background: #e50914;
+  color: #111;
+  background: #f5a623;
   font-weight: 600;
   border: none;
   cursor: pointer;
@@ -113,8 +119,8 @@
 }
 
 .loginScreen__logo {
-  width: 150px;
-  object-fit: contain;
+  margin-top: 18px;
+  font-size: 1.8rem;
 }
 
 .loginScreen__input > form > input {
@@ -134,8 +140,8 @@
 .loginScreen__getStarted {
   padding: 16px 20px;
   font-size: 1rem;
-  color: #fff;
-  background-color: #e50914;
+  color: #111;
+  background-color: #f5a623;
   border: none;
   font-weight: 600;
   cursor: pointer;
@@ -154,8 +160,8 @@
 .loginScreen__getStartedMobile {
   padding: 16px 20px;
   font-size: 1rem;
-  color: #fff;
-  background-color: #e50914;
+  color: #111;
+  background-color: #f5a623;
   border: none;
   font-weight: 600;
   cursor: pointer;

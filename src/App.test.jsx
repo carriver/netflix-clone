@@ -53,22 +53,31 @@ describe('App routes', () => {
     renderAppAt('/');
     reportAuthState(null);
 
-    expect(await screen.findByText('NETFLIX ORIGINALS')).toBeInTheDocument();
+    expect(await screen.findByText('STREAMING ORIGINALS')).toBeInTheDocument();
   });
 
   it('sends visitors who open /profile to the sign-in page', async () => {
     renderAppAt('/profile');
     reportAuthState(null);
 
-    expect(await screen.findByText('Unlimited movies, TV shows, and more.')).toBeInTheDocument();
+    expect(await screen.findByText('Browse movies and shows, demo style.')).toBeInTheDocument();
     expect(window.location.pathname).toBe('/login');
+  });
+
+  it('tells visitors on the sign-in page that this is a demo, not Netflix', async () => {
+    renderAppAt('/login');
+    reportAuthState(null);
+
+    const notice = await screen.findByRole('note');
+    expect(notice).toHaveTextContent('Not affiliated with Netflix');
+    expect(notice).toHaveTextContent('user@example.com');
   });
 
   it('waits for Firebase to restore the session before guarding /profile', () => {
     renderAppAt('/profile');
 
     expect(window.location.pathname).toBe('/profile');
-    expect(screen.queryByText('Unlimited movies, TV shows, and more.')).not.toBeInTheDocument();
+    expect(screen.queryByText('Browse movies and shows, demo style.')).not.toBeInTheDocument();
   });
 
   it('shows the profile to signed-in users', async () => {

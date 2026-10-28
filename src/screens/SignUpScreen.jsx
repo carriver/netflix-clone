@@ -54,7 +54,7 @@ function SignUpScreen({ email }) {
           Sign In
         </button>
         <h4>
-          <span className='signUpScreen__gray'>New to Netflix? </span>
+          <span className='signUpScreen__gray'>New to Reelhouse? </span>
           <span className='signUpScreen__link' onClick={register}>
             Sign up now.
           </span>

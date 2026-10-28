@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Link } from 'react-router';
 import SignUpScreen from './SignUpScreen';
-import backgroundImg from '../img/loginBackground.png';
 import { useIsMobile } from '../hooks/useIsMobile';
-import logoImg from '../img/logo.png';
+import Wordmark from '../components/Wordmark';
+import DemoNotice from '../components/DemoNotice';
 import './LoginScreen.css';
 
 function LoginScreen() {
@@ -13,21 +13,10 @@ function LoginScreen() {
   const [email, setEmail] = useState('');
 
   return (
-    <div
-      className={`${isMobile ? 'loginScreen--mobile' : 'loginScreen'}`}
-      style={{
-        backgroundImage: `url(${backgroundImg})`,
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
-      }}>
+    <div className={`${isMobile ? 'loginScreen--mobile' : 'loginScreen'}`}>
       <div className='loginScreen__bg'>
-        <Link to='/' className='loginScreen__logoLink'>
-          <img
-            className='loginScreen__logo'
-            src={logoImg}
-            alt='Back to browsing'
-          />
+        <Link to='/' className='loginScreen__logoLink' aria-label='Back to browsing'>
+          <Wordmark className='loginScreen__logo' />
         </Link>
         <button onClick={() => setIsSignInFormOpen(true)} className='loginScreen__button'>
           Sign in
@@ -42,15 +31,16 @@ function LoginScreen() {
             ? 'loginScreen__bodyMobile'
             : 'loginScreen__body'
         }`}>
+        <DemoNotice />
         {isSignInFormOpen ? (
           <SignUpScreen email={email} />
         ) : (
           <>
-            <h1>Unlimited movies, TV shows, and more.</h1>
-            <h2>Watch anywhere. Cancel anytime.</h2>
+            <h1>Browse movies and shows, demo style.</h1>
+            <h2>A streaming app built for a developer portfolio.</h2>
             <h3>
-              Ready to watch? Enter your email to create or restart your
-              membership.
+              Titles come from TMDB. Sign in with the demo account above to try
+              profiles and test-mode subscriptions.
             </h3>
             <div
               className={`${

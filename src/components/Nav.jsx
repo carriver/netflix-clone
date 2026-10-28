@@ -1,13 +1,11 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router';
-import logoImg from '../img/logo.png';
-import avatarImg from '../img/avatar.png';
+import { Link } from 'react-router';
+import Wordmark from './Wordmark';
+import avatarImg from '../img/avatar.svg';
 import './Nav.css';
 
 function Nav() {
   const [show, handleShow] = useState(false);
-
-  const navigate = useNavigate();
 
   const transitionNavBar = () => {
     if (window.scrollY > 100) {
@@ -27,20 +25,12 @@ function Nav() {
   return (
     <div className={`nav ${show ? 'nav__bg' : ''}`}>
       <div className='nav__content'>
-        <img
-          onClick={() => navigate('/')}
-          className='nav__logo'
-          src={logoImg}
-          alt='logo'
-          title='Home'
-        />
-        <img
-          onClick={() => navigate('/profile')}
-          className='nav__avatar'
-          src={avatarImg}
-          alt='avatar'
-          title='Edit Profile'
-        />
+        <Link to='/' className='nav__logo' title='Home'>
+          <Wordmark />
+        </Link>
+        <Link to='/profile' title='Edit Profile'>
+          <img className='nav__avatar' src={avatarImg} alt='Your profile' />
+        </Link>
       </div>
     </div>
   );

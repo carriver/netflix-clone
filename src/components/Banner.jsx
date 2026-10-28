@@ -13,7 +13,7 @@ function Banner() {
   const [movie, setMovie] = useState(null);
 
   useEffect(() => {
-    fetchTmdbResults(requests.fetchNetflixOriginals).then((results) => {
+    fetchTmdbResults(requests.fetchStreamingOriginals).then((results) => {
       if (results.length) setMovie(pickRandom(results));
     });
   }, []);

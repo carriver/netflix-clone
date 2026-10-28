@@ -7,7 +7,7 @@ import Nav from '../components/Nav';
 import Plan from '../components/Plan';
 import 'react-toastify/dist/ReactToastify.css';
 import { useIsMobile } from '../hooks/useIsMobile';
-import avatarImg from '../img/avatar.png';
+import avatarImg from '../img/avatar.svg';
 import './ProfileScreen.css';
 
 const NAVIGATION_HINT_TOAST_OPTIONS = {
@@ -19,7 +19,7 @@ const NAVIGATION_HINT_TOAST_OPTIONS = {
 
 function useNavigationHintToasts(isMobile) {
   useEffect(() => {
-    toast.info('Click Netflix for Home Screen', {
+    toast.info('Click Reelhouse for Home Screen', {
       ...NAVIGATION_HINT_TOAST_OPTIONS,
       position: 'top-left',
       autoClose: 5000,
@@ -53,7 +53,7 @@ function ProfileScreen() {
         <h1>Edit Profile</h1>
 
         <div className='profileScreen__info'>
-          <img src={avatarImg} alt='avatar' />
+          <img src={avatarImg} alt='' />
 
           <div className='profileScreen__details'>
             <h2>{user.email}</h2>
